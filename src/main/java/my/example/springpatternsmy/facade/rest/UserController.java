@@ -1,5 +1,6 @@
 package my.example.springpatternsmy.facade.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import my.example.springpatternsmy.facade.service.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/facade/users")
+@Tag(name = "Facade")
 public class UserController {
 
     private final UserFacade userFacade;
