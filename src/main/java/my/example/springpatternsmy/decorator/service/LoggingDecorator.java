@@ -3,21 +3,23 @@ package my.example.springpatternsmy.decorator.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import my.example.springpatternsmy.decorator.dto.UserDto;
-import my.example.springpatternsmy.decorator.rest.UserController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @AllArgsConstructor
-public class LoggingDecorator implements UserController {
+@Primary
+public class LoggingDecorator implements UserService {
 
-    private final UserController userController;
+    private final UserService userService;
 
     @Override
     public ResponseEntity<UserDto> getUser(Long userId) {
         logRequest(userId);
-        ResponseEntity<UserDto> response = userController.getUser(userId);
+        ResponseEntity<UserDto> response = userService.getUser(userId);
         logResponse(response);
         return response;
     }
